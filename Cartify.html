@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CARTIFY - Shop Anything Anytime</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      body {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      background-color: beige;
+      color: #111;
+    }
+
+    header {
+      background: rgb(3, 55, 3);
+      backdrop-filter: blur(20px);
+      ;
+      color: white;
+      padding: 25px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-title span {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: white;
+      font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      filter: invert(1) brightness(1.2);
+      transition: transform 0.3s ease;
+    }
+
+    .logo-title:hover .logo-img {
+      transform: scale(1.1);
+    }
+
+    .slogan {
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 2px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    nav {
+      flex: 1;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 18px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.8px;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #2ecc71;
+      transform: translateY(-2px);
+    }
+
+    .cart {
+      font-size: 22px;
+      cursor: pointer;
+      position: relative;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .cart:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #2ecc71;
+      color: white;
+      font-size: 12px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 30px auto;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInSlide 0.6s ease-out forwards;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 10px 15px;
+      width: 300px;
+      border: 1px solid green;
+      border-radius: 25px;
+      outline: none;
+      font-size: 16px;
+      transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+    }
+
+    .search-bar input[type="text"]:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes fadeInSlide {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    .product {
+      text-align: center;
+    }
+
+    .products img {
+      display: block;
+      margin-top: 10px;
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .product img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .product-name {
+      font-weight: bold;
+      color: green;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      margin-bottom: 5px;
+    }
+
+    .product:hover .product-name {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    .posters {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin-top: 5px;
+    }
+
+    .posters a {
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .posters img {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .posters img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .posters a.hover-effect p,
+    .posters a.hover-effect h3 {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      margin-top: 10px;
+    }
+
+    .posters a.hover-effect p {
+      color: green;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .posters a.hover-effect h3 {
+      color: rgb(167, 167, 95);
+      font-weight: bold;
+      font-style: italic;
+      text-align: right;
+      font-size: 15px;
+    }
+
+    .posters a.hover-effect:hover p,
+    .posters a.hover-effect:hover h3 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background-color: rgb(4, 75, 4);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer .content {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    footer .content a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    footer .content a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: #2ecc71;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    footer .content a:hover {
+      color: #2ecc71;
+      transform: translateY(-2px);
+    }
+
+    footer .content a:hover::after {
+      width: 70%;
+      left: 15%;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    footer hr {
+      width: 60%;
+      margin: 25px auto;
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slider-wrapper {
+      width: 100%;
+      max-width: 1100px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .slider-wrapper:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 30px rgba(6, 7, 6, 0.4);
+    }
+
+    .slider {
+      display: flex;
+      gap: 0;
+      height: 600px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      border-radius: 15px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      position: relative;
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .slide-text {
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 20px;
+      border-radius: 10px;
+      max-width: 70%;
+      backdrop-filter: blur(5px);
+    }
+
+    .slide-text h2 {
+      font-size: 28px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .slide-text p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    .showstopper img {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .showstopper img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .showstopper a.hover-effect p,
+    .showstopper a.hover-effect h2 {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      margin-top: 10px;
+    }
+
+    .showstopper a.hover-effect p {
+      color: green;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .showstopper a.hover-effect h2 {
+      color: rgb(167, 167, 95);
+      font-weight: bold;
+      font-style: italic;
+      text-align: right;
+      font-size: 15px;
+    }
+
+    .showstopper a.hover-effect:hover p,
+    .showstopper a.hover-effect:hover h2 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .showstopper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 30px;
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20%;
+    }
+
+    .showstopper a {
+      position: relative;
+      display: block;
+      width: 250px;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .showstopper a:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .showstopper img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .showstopper a h2,
+    .showstopper a p {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 10px 15px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      color: white;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .showstopper a h2 {
+      top: 40%;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .showstopper a p {
+      bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .showstopper a:hover h2,
+    .showstopper a:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .showstopper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 250px);
+      gap: 50px;
+    }
+
+    .brands-grid a {
+      width: 250px;
+    }
+
+
+
+    .brands-grid a,
+    .featured-balenciaga {
+      position: relative;
+      display: block;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .brands-grid a:hover,
+    .featured-balenciaga:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .brands-grid img,
+    .featured-balenciaga img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brands-grid h2,
+    .brands-grid p,
+    .featured-balenciaga h2,
+    .featured-balenciaga p {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 10px 15px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      color: white;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .brands-grid h2,
+    .featured-balenciaga h2 {
+      top: 40%;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brands-grid p,
+    .featured-balenciaga p {
+      bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .brands-grid a:hover h2,
+    .brands-grid a:hover p,
+    .featured-balenciaga:hover h2,
+    .featured-balenciaga:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .featured-balenciaga {
+      width: 370px;
+      height: 530px;
+      flex-shrink: 0;
+    }
+
+    .featured-balenciaga img {
+      height: 100%;
+    }
+
+    .perfumes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      justify-content: center;
+    }
+
+    .perfumes a {
+      position: relative;
+      display: block;
+      border-radius: 15px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .perfumes a:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .perfumes img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .perfumes h2,
+    .perfumes p {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 10px 15px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      color: white;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .perfumes h2 {
+      top: 40%;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .perfumes p {
+      bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .perfumes a:hover h2,
+    .perfumes a:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .genz {
+      background-color: black;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .genz img {
+      width: 300px;
+      height: 500px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .genz img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .genz h2 {
+      color: white;
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .genz {
+      background-color: black;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      height: 700px;
+      /* adjust based on image size */
+      overflow: hidden;
+    }
+
+    .genz .slide-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      animation: fadeLoop 16s infinite;
+    }
+
+    .genz .slide-img:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .genz .slide-img:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    .genz .slide-img:nth-child(3) {
+      animation-delay: 4s;
+    }
+
+    .genz .slide-img:nth-child(4) {
+      animation-delay: 6s;
+    }
+
+    .genz .slide-img:nth-child(5) {
+      animation-delay: 8s;
+    }
+
+    .genz .slide-img:nth-child(6) {
+      animation-delay: 10s;
+    }
+
+    @keyframes fadeLoop {
+      0% {
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      35% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .genz {
+      background-color: black;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      height: 400px;
+      /* adjust if needed */
+      overflow: hidden;
+    }
+
+    .genz img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .genz img.active {
+      opacity: 1;
+    }
+
+    .genz-slider {
+      background: black;
+      padding: 0;
+      margin: 0;
+      width: 99vw;
+      height: 200vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+
+    .genz-images {
+      position: relative;
+      width: 300px;
+      /* keep or adjust this */
+      height: 700px;
+      overflow: hidden;
+      margin-left: 2%;
+      /* 👈 This moves it to the left */
+    }
+
+
+    .genz-images img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* 👈 Align to top-left of the container */
+      width: 100%;
+      /* use container width */
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+
+
+
+    .genz-images img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .genz-images img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .genz-images img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .genz-images-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+
+    .genz-text-slide {
+      position: absolute;
+      top: 50%;
+      right: -100vw;
+      transform: translateY(-50%);
+      color: white;
+      text-align: right;
+      z-index: 10;
+      padding-right: 5%;
+      opacity: 0;
+      transition: right 1s ease, opacity 1s ease;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+
+    .genz-images-wrapper:hover .genz-text-slide {
+      right: 50%;
+      /* Slide in */
+      opacity: 1;
+    }
+
+
+    .genz-text-slide h2 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      color: #ffffff;
+    }
+
+    .genz-text-slide p {
+      font-size: 20px;
+      font-style: italic;
+      color: #ccc;
+    }
+
+    /* Show text on hover */
+    .genz-images-wrapper:hover .genz-text-slide {
+      right: 5%;
+      opacity: 1;
+    }
+
+    .new-arrivals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 53px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      justify-content: center;
+
+    }
+
+    .new-arrivals a {
+      position: relative;
+      display: block;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #161616;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      text-align: center;
+    }
+
+    .new-arrivals a:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 5px 30px white;
+    }
+
+    .new-arrivals img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .new-arrivals h2 {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px 10px;
+      margin: 0;
+      background-color: #161616;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .discount-card {
+      position: relative;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 20px;
+      left: -10px;
+      background-color: #e60023;
+      color: white;
+      padding: 6px 12px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 8px;
+      animation: pulseBadge 1.5s infinite ease-in-out;
+      z-index: 10;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      transform: rotate(-15deg);
+    }
+
+    @keyframes pulseBadge {
+      0% {
+        transform: rotate(-45deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(-45deg) scale(1.1);
+      }
+
+      100% {
+        transform: rotate(-45deg) scale(1);
+      }
+    }
+
+    /* === SUBSCRIPTION SECTION STYLING === */
+    .subscription-section {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #0f1a1a, #1a2727);
+      color: white;
+      margin-top: 0px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(46, 204, 113, 0.4);
+      font-style: italic;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: #ccc;
+      font-style: italic;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* === ENHANCED FLIP CARD (Updated) === */
+    .flip-card {
+      width: 400px;
+      height: 250px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 20px;
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(46, 204, 113, 0.2);
+      cursor: pointer;
+      margin: 0 auto;
+      overflow: visible;
+      background: transparent;
+    }
+
+    .flip-card:hover {
+      transform: scale(1.1) rotateY(10deg) rotateX(5deg);
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(46, 204, 113, 0.4);
+      z-index: 10;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease-out;
+      border-radius: 20px;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .flip-card-front {
+      background: linear-gradient(145deg, #1e2a2a, #2c3e3e);
+    }
+
+    .flip-card-back {
+      background: linear-gradient(145deg, #2c3e3e, #1e2a2a);
+      transform: rotateY(180deg);
+    }
+
+    .flip-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.95) contrast(1.05);
+    }
+
+    .flip-card:hover .flip-card-front img,
+    .flip-card:hover .flip-card-back img {
+      transform: scale(1.05);
+      filter: brightness(1.1) contrast(1.15) saturate(1.1);
+    }
+
+    /* Shine Effect Overlay */
+    .flip-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center,
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      opacity: 0;
+      transform: rotate(45deg);
+      transition: opacity 0.6s ease;
+      z-index: 2;
+    }
+
+    .flip-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Subtle Glow Pulse on Hover */
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(46, 204, 113, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 40px rgba(46, 204, 113, 0.4);
+      }
+
+      100% {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(46, 204, 113, 0.2);
+      }
+    }
+
+    .flip-card:hover {
+      animation: glowPulse 2.5s infinite alternate;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      /* Remove underline from link */
+      color: white;
+    }
+
+    .logo-title:hover {
+      opacity: 0.9;
+    }
+
+    .cart {
+      font-size: 22px;
+      position: relative;
+      color: white;
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/cart" class="logo-title" id="cart-trigger" style="cursor: pointer;">
+      <img src="https://www.pinclipart.com/picdir/big/83-831322_shopping-cart-logo-png-white-clipart.png"
+        alt="Cartify Logo" class="logo-img" />
+      <span>CARTIFY</span>
+      <div class="slogan">Shop Anything Anytime</div>
+
+    </a>
+
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/signin">Sign In</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." />
+    </div>
+
+    <div class="products">
+      <div class="product"><a href="/grocery">
+          <div class="product-name">Grocery</div><img
+            src="https://freepngimg.com/thumb/grocery/54023-3-grocery-free-download-image.png" alt="grocery">
+        </a></div>
+      <div class="product"><a href="/electronics">
+          <div class="product-name">Electronics</div><img
+            src="https://www.pngplay.com/wp-content/uploads/6/Electronic-Gadgets-PNG-Clipart-Background.png"
+            alt="electronics">
+        </a></div>
+      <div class="product"><a href="/fashion">
+          <div class="product-name">Fashion</div><img
+            src="https://png.pngtree.com/png-vector/20240131/ourmid/pngtree-clothing-garment-apparel-png-image_11576281.png"
+            alt="fashion">
+        </a></div>
+      <div class="product"><a href="/decor">
+          <div class="product-name">Decor</div><img
+            src="https://static.vecteezy.com/system/resources/thumbnails/034/630/930/small_2x/elegant-decorative-vases-and-planters-with-succulents-and-other-plants-on-transparent-background-interior-accessories-cut-out-home-decor-front-view-ai-generated-png.png"
+            alt="decor">
+        </a></div>
+    </div>
+
+    <br />
+    <div class="posters">
+      <a href="/summersale"><img width="900" height="500px"
+          src="https://i.pinimg.com/736x/75/10/45/7510459093b904a152b400f2bc84a2d0.jpg" alt="sale"></a>
+      <a href="/premium cloths" class="hover-effect">
+        <img height="500px" width="430px" src="https://i.pinimg.com/736x/69/49/52/6949524a0e6c96ffdbf822de4cbd2c07.jpg"
+          alt="model">
+        <p>THE PREMIUM EDIT<br></p>
+        <h3>~explore premium summer styles</h3>
+      </a>
+    </div>
+
+    <div class="slider-wrapper">
+      <div class="slider">
+        <div class="slide">
+          <a href="/apple">
+            <img
+              src="https://assets-global.website-files.com/5d0a61f2903f45be8e0ba3b7/663c0f84eccec09f19abb15d_702624_b9eb7e0f29e048e4b728ed0fe29b8f3d.jpeg">
+            <div class="slide-text">
+              <h2>Explore Apple World</h2>
+              <p>Innovative technology at your fingertips</p>
+            </div>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="/iPhone16">
+            <img
+              src="https://images.macrumors.com/t/SmIQxxD8PeNRatir3RFKfqT519g=/3532x/article-new/2023/09/iPhone-16-Side-2-Feature.jpg">
+            <div class="slide-text">
+              <h2>iPhone 16</h2>
+              <p>Redefining smartphone experience</p>
+            </div>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="/macbook">
+            <img src="https://i.pcmag.com/imagery/articles/019B6ClRyAnAN24qsDDI50I-3.fit_lim.v1685987242.jpg">
+            <div class="slide-text">
+              <h2>MacBook Series</h2>
+              <p>Power meets performance</p>
+            </div>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="/apple watch">
+            <img
+              src="https://photo2.tinhte.vn/data/attachment-files/2023/08/6517762_Apple-Watch-Series-9-hong-tinhte.jpg">
+            <div class="slide-text">
+              <h2>Apple Watch</h2>
+              <p>Your health companion</p>
+            </div>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="/airpods">
+            <img
+              src="https://9to5mac.com/wp-content/uploads/sites/6/2020/12/AirPods-Max-black.jpg?quality=82&strip=all">
+            <div class="slide-text">
+              <h2>Airpods</h2>
+              <p>What's in the Box</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <h2
+      style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px;  font-style: italic;">
+      SHOWSTOPPER
+      <hr style="width: 80%; border: 1px solid green;
+      margin: 10px auto;">
+    </h2>
+
+    <div class="showstopper">
+      <!-- Balenciaga FIRST -->
+      <a href="/balenciaga" class="featured-balenciaga">
+        <img src="https://i.pinimg.com/736x/0e/f8/03/0ef803bb17888c772cb48e0e80966337.jpg" alt="balenciaga">
+        <h2>BALENCIAGA</h2>
+        <p>Buy 2 get 30% OFF</p>
+      </a>
+
+      <!-- Brand grid NEXT -->
+      <div class="brands-grid">
+        <a href="/tommy hilfiger">
+          <img src="https://i.pinimg.com/736x/c5/40/4d/c5404ded74707eb71725757659c9f0bf.jpg" alt="Tommy Hilfiger">
+          <h2>TOMMY HILFIGER</h2>
+          <p>Upto 50% OFF</p>
+        </a>
+        <a href="/Calvin Klein">
+          <img src="https://i.pinimg.com/736x/fe/9f/80/fe9f80415b4edfea9e3c56a8506665d4.jpg" alt="Calvin Klein">
+          <h2>CALVIN KLEIN</h2>
+          <p>Upto 40% OFF + Buy 2 Get 15% Off</p>
+        </a>
+        <a href="/ralph lauren">
+          <img src="https://i.pinimg.com/736x/f5/dd/52/f5dd52280c738f464d7167129678247d.jpg" alt="Ralph Lauren">
+          <h2>RALPH LAUREN</h2>
+          <p>Upto 30% OFF + Buy 2 Get 15% Off</p>
+        </a>
+        <a href="/lacoste">
+          <img src="https://i.pinimg.com/736x/9e/c8/bb/9ec8bb714dc278b6792330673ec72d54.jpg" alt="Lacoste">
+          <h2>LACOSTE</h2>
+          <p>Upto 30% OFF</p>
+        </a>
+        <a href="/versace">
+          <img src="https://i.pinimg.com/736x/be/a2/fd/bea2fdf72bbfcda5e60f96878eeb79cd.jpg" alt="Versace">
+          <h2>VERSACE</h2>
+          <p>Upto 30% OFF</p>
+        </a>
+        <a href="guess">
+          <img src="https://i.pinimg.com/736x/8a/91/82/8a91826ccdb83a349269dad26a0e5baf.jpg" alt="Guess">
+          <h2>GUESS</h2>
+          <p>Upto 40% OFF + Buy 2 Get 15% Off</p>
+        </a>
+      </div>
+    </div>
+
+    <h2
+      style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px;  font-style: italic;">
+      ELIXIRS
+      <hr style="width: 80%; border: 1px solid green;
+      margin: 10px auto;">
+    </h2>
+
+    <div class="perfumes">
+
+      <a href="/tom ford">
+        <img src="https://i.pinimg.com/1200x/06/21/e0/0621e0a2fa136cde0a65780d7cbb7921.jpg" alt="tom ford">
+        <h2>TOM FORD</h2>
+      </a>
+      <a href="/creed">
+        <img src="https://i.pinimg.com/1200x/10/a8/17/10a817892def4b099f224b0b598aacd6.jpg" alt="Creed">
+        <h2>CREED</h2>
+      </a>
+      <a href="/giorgio armani">
+        <img src="https://i.pinimg.com/1200x/e1/bb/eb/e1bbeb30020b47ca47d212dd4ffd5dae.jpg" alt="Giorgio Armani">
+        <h2>GIORGIO ARMANI</h2>
+      </a>
+      <a href="/prada">
+        <img src="https://i.pinimg.com/1200x/99/3a/07/993a070878c99140a06b151b97b25a1f.jpg" alt="Prada">
+        <h2>PRADA</h2>
+      </a>
+      <a href="/versace">
+        <img src="https://i.pinimg.com/736x/67/96/7f/67967fe0c3212ccb2ee2a3051c4a27db.jpg" alt="Versace">
+        <h2>VERSACE</h2>
+      </a>
+      <a href="/diesel">
+        <img src="https://i.pinimg.com/1200x/75/7a/cf/757acf49bf30328c546bc779a5433586.jpg" alt="Diesel">
+        <h2>DIESEL</h2>
+      </a>
+      <a href="/dior">
+        <img src="https://i.pinimg.com/736x/7b/ec/e2/7bece2908c701518db80d6e041db08bd.jpg" alt="dior">
+        <h2>DIOR</h2>
+      </a>
+      <a href="/chanel">
+        <img src="https://i.pinimg.com/736x/ba/34/89/ba34899ed05a9f8aab851ea958a75c3e.jpg" alt="Chanel">
+        <h2>CHANEL</h2>
+      </a>
+    </div>
+    <div class="genz-slider">
+      <h2
+        style="text-align:center; margin:40px 0 10px; font-size:40px; color:rgb(255, 255, 255); font-weight:700; letter-spacing:1px; font-style: italic; background-color: #111;">
+        GEN-Z DRIPS
+      </h2>
+      <audio id="genz-audio" loop>
+        <source src="" type="audio/mpeg">
+      </audio>
+      <div class="genz-images-wrapper">
+        <div class="genz-images">
+          <a href="/view all"><img src="img1.png" alt="gen-z 1" class="active">
+            <img src="img2.png" alt="gen-z 2">
+            <img src="img3.png" alt="gen-z 3">
+            <img src="img4.png" alt="gen-z 4">
+            <img src="img5.png" alt="gen-z 5">
+            <img src="img6.png" alt="gen-z 6"></a>
+        </div>
+        <div class="genz-text-slide">
+          <h2>GEN-Z STYLE UNLEASHED</h2>
+          <p style="font-size: 15px;"> Drop the basics. Embrace bold.</p><br>
+          <a href="/view all">
+            <p>VIEW ALL</p><br>
+          </a>
+          <a href="/50% off">
+            <p>FROM 50% OFF</p><br>
+          </a>
+          <a href="/new apperals">
+            <p>NEW APPERALS</p><br>
+          </a>
+          <a href="/street wear">
+            <p>STREET WEAR</p><br>
+          </a>
+          <a href="/baggy">
+            <p>ALL BAGGY</p><br>
+          </a>
+          <a href="/sale">
+            <p style="color: rgb(30, 157, 30);"> SALE</p><br>
+          </a>
+          <a href="/bags">
+            <p>BAGS | BAGPACKS</p><br>
+          </a>
+          <a href="/accessories">
+            <p>ACCESSORIES</p><br>
+          </a>
+        </div>
+      </div>
+      <h2
+        style="text-align:center; margin:40px 0 10px; font-size:40px; color:rgb(255, 255, 255); font-weight:700; letter-spacing:1px; font-style: italic; background-color: #000000;">
+        NEW ARRIVALS
+      </h2>
+      <div class="new-arrivals">
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/1200x/49/85/41/498541f3c1e4131ca28c6f2c7800106c.jpg">
+          <h2>WOMEN BAGGY SWEATPANTS</h2>
+        </a>
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/736x/20/6f/6c/206f6c023601b14f6567bfe4020dc1af.jpg">
+          <h2>UNISEX GRILLZ</h2>
+        </a>
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/736x/64/ee/29/64ee29ecf863bff2003804a3ffc2c615.jpg">
+          <h2>MEN DIESEL CAP</h2>
+        </a>
+        <a href="/new arrivals">
+          <span class="discount-badge">30% OFF</span>
+          <img src="https://i.pinimg.com/1200x/f4/32/5e/f4325e1d6094ca326261c43276818683.jpg">
+          <h2>DIRT WASH MULTI-POCKET JEANS</h2>
+        </a>
+      </div>
+    </div>
+    </div>
+    <!-- === SUBSCRIPTION SECTION === -->
+    <section class="subscription-section">
+      <h2 class="section-title">JOIN THE <span style="color: #2ecc71;">CARTIFY</span> CLUB</h2>
+      <p class="section-subtitle">Unlock Exclusive Perks, Early Access & Mastercard Rewards</p>
+
+      <div class="subscription">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <a href="/Mastercard" class="flip-card-front">
+              <img src="Mastercard front.jpg" alt="Mastercard Front">
+            </a>
+            <a href="/Mastercard" class="flip-card-back">
+              <img src="Mastercard back.jpg" alt="Mastercard Back">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <p>&copy; CARTIFY – Curated Luxury, Delivered Instantly</p>
+    <hr />
+    <div class="content">
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://gmail.com" target="_blank">Email</a>
+      <a href="https://x.com" target="_blank">X</a>
+    </div>
+    <p style="margin-top: 15px; font-size: 12px;">2025 — Crafted with precision</p>
+  </footer>
+
+  <script>
+    const slider = document.querySelector('.slider');
+    const slideWidth = slider.clientWidth;
+    let currentIndex = 0;
+
+    const scrollToSlide = (index) => {
+      slider.scrollTo({
+        left: index * slideWidth,
+        behavior: 'smooth'
+      });
+    };
+
+    setInterval(() => {
+      currentIndex++;
+      if (currentIndex >= slider.children.length) currentIndex = 0;
+      scrollToSlide(currentIndex);
+    }, 3000);
+
+    const genzImages = document.querySelectorAll('.genz-images img');
+    let genzIndex = 0;
+
+    function updateGenzSlide() {
+      genzImages.forEach(img => img.classList.remove('active'));
+      genzImages[genzIndex].classList.add('active');
+      genzIndex = (genzIndex + 1) % genzImages.length;
+    }
+
+    setInterval(updateGenzSlide, 2500);
+    updateGenzSlide(); // initialize
+
+    document.getElementById("cart-trigger").addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent going to /cart if not needed
+      openCart(); // Call your cart function
+    });
+
+    function openCart() {
+      // Example: Show cart sidebar or modal
+      alert("Opening cart... (Add your cart UI here)");
+      // You can show a drawer, modal, etc.
+    }
+  </script>
+
+  </script>
+</body>
+
+</html>
