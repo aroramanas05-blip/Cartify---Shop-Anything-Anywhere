@@ -157,7 +157,7 @@
       flex-wrap: wrap;
       justify-content: space-around;
       margin-top: 20px;
-      gap: 20px;
+      gap: 20px;;
     }
 
     .product {
@@ -1126,6 +1126,73 @@
       margin-left: 10px;
       transition: transform 0.3s ease;
     }
+
+    .home-decor{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width:1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      justify-content:center;
+    }
+
+    .home-decor a {
+      position: relative;
+      display: block;
+      border-radius: 15px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .home-decor a:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .home-decor img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .home-decor h2,
+    .home-decor p {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 10px 15px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      color: white;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .home-decor h2 {
+      top: 40%;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .home-decor p {
+      bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .home-decor a:hover h2,
+    .home-decor a:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 
@@ -1153,18 +1220,18 @@
     </div>
 
     <div class="products">
-      <div class="product"><a href="/grocery">
-          <div class="product-name">Grocery</div><img
-            src="https://freepngimg.com/thumb/grocery/54023-3-grocery-free-download-image.png" alt="grocery">
+      <div class="product"><a href="/accessories">
+          <div class="product-name">Accessories</div><img
+            src="https://i.pinimg.com/736x/a4/67/0b/a4670bc98df2437421f158cd74e6a87f.jpg" alt="accessories">
         </a></div>
       <div class="product"><a href="/electronics">
           <div class="product-name">Electronics</div><img
-            src="https://www.pngplay.com/wp-content/uploads/6/Electronic-Gadgets-PNG-Clipart-Background.png"
+            src=""
             alt="electronics">
         </a></div>
       <div class="product"><a href="/fashion">
           <div class="product-name">Fashion</div><img
-            src="https://png.pngtree.com/png-vector/20240131/ourmid/pngtree-clothing-garment-apparel-png-image_11576281.png"
+            src=""
             alt="fashion">
         </a></div>
       <div class="product"><a href="/decor">
@@ -1420,6 +1487,33 @@
         </div>
       </div>
     </section>
+    <h2
+      style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px;  font-style: italic;">
+      HOME DECOR
+      <hr style="width: 80%; border: 1px solid green;
+      margin: 10px auto;">
+    </h2>
+    <p style="text-align: center; font-size: 18px; color: rgb(17, 146, 17); margin-bottom: 20px;font-style: italic;">
+      Home goals? We just dropped them. </p>
+
+    <div class="home-decor">
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/97/8a/9b/978a9bbb29a41075e97b752f0739608e.jpg" alt="Home Decor">
+        <h2>JAPANDI VASE</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/de/5e/aa/de5eaa6d284d95889b18549fd2fa6cd1.jpg" alt="Home Decor">
+        <h2>COZY BEAN BAG</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/3c/d6/21/3cd6213da57e10e57523c9126fbcf9d2.jpg" alt="Home Decor">
+        <h2>TABLE LAMP</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/c9/33/3d/c9333dca89f2f6e155f4cb98b012624f.jpg" alt="Home Decor">
+        <h2>SCANDINAVIAN THROW BLANKET</h2>
+      </a>
+    </div>
   </main>
 
 
