@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CARTIFY - Shop Anything Anytime</title>
+  {% load static %}
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static  'app/css/style.css' %}" />
+</head>
+<body>
+  <header>
+    <a href="/cart" class="logo-title" id="cart-trigger" style="cursor: pointer;">
+      <img src="https://www.pinclipart.com/picdir/big/83-831322_shopping-cart-logo-png-white-clipart.png"
+        alt="Cartify Logo" class="logo-img" />
+      <span>CARTIFY</span>
+      <div class="slogan">Shop Anything Anytime</div>
+    </a>
+
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/signin">Sign In</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." />
+    </div>
+
+    <div class="products">
+      <div class="product">
+        <a href="/accessories">
+          <div class="product-name">Accessories</div>
+          <img src="https://i.pinimg.com/736x/a4/67/0b/a4670bc98df2437421f158cd74e6a87f.jpg" alt="accessories">
+        </a>
+      </div>
+
+      <div class="product">
+        <a href="/electronics">
+          <div class="product-name">Electronics</div>
+          <img src="" alt="electronics">
+        </a>
+      </div>
+
+      <div class="product">
+        <a href="/fashion">
+          <div class="product-name">Fashion</div>
+          <img src="" alt="fashion">
+        </a>
+      </div>
+
+      <div class="product">
+        <a href="/decor">
+          <div class="product-name">Decor</div>
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/034/630/930/small_2x/elegant-decorative-vases-and-planters-with-succulents-and-other-plants-on-transparent-background-interior-accessories-cut-out-home-decor-front-view-ai-generated-png.png" alt="decor">
+        </a>
+      </div>
+    </div>
+
+    <br />
+    <div class="posters">
+      <a href="/summersale">
+        <img width="900" height="500" src="https://i.pinimg.com/736x/75/10/45/7510459093b904a152b400f2bc84a2d0.jpg" alt="sale">
+      </a>
+
+      <a href="/premium cloths" class="hover-effect">
+        <img height="500" width="430" src="https://i.pinimg.com/736x/69/49/52/6949524a0e6c96ffdbf822de4cbd2c07.jpg" alt="model">
+        <p>THE PREMIUM EDIT<br></p>
+        <h3>~explore premium summer styles</h3>
+      </a>
+    </div>
+
+    <div class="slider-wrapper">
+      <div class="slider">
+        <div class="slide">
+          <a href="/apple">
+            <img src="https://assets-global.website-files.com/5d0a61f2903f45be8e0ba3b7/663c0f84eccec09f19abb15d_702624_b9eb7e0f29e048e4b728ed0fe29b8f3d.jpeg" alt="Apple">
+            <div class="slide-text">
+              <h2>Explore Apple World</h2>
+              <p>Innovative technology at your fingertips</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="slide">
+          <a href="/iPhone16">
+            <img src="https://images.macrumors.com/t/SmIQxxD8PeNRatir3RFKfqT519g=/3532x/article-new/2023/09/iPhone-16-Side-2-Feature.jpg" alt="iPhone 16">
+            <div class="slide-text">
+              <h2>iPhone 16</h2>
+              <p>Redefining smartphone experience</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="slide">
+          <a href="/macbook">
+            <img src="https://i.pcmag.com/imagery/articles/019B6ClRyAnAN24qsDDI50I-3.fit_lim.v1685987242.jpg" alt="MacBook">
+            <div class="slide-text">
+              <h2>MacBook Series</h2>
+              <p>Power meets performance</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="slide">
+          <a href="/apple watch">
+            <img src="https://photo2.tinhte.vn/data/attachment-files/2023/08/6517762_Apple-Watch-Series-9-hong-tinhte.jpg" alt="Apple Watch">
+            <div class="slide-text">
+              <h2>Apple Watch</h2>
+              <p>Your health companion</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="slide">
+          <a href="/airpods">
+            <img src="https://9to5mac.com/wp-content/uploads/sites/6/2020/12/AirPods-Max-black.jpg?quality=82&strip=all" alt="AirPods">
+            <div class="slide-text">
+              <h2>Airpods</h2>
+              <p>What's in the Box</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px; font-style: italic;">
+      SHOWSTOPPER
+      <hr style="width: 80%; border: 1px solid green; margin: 10px auto;">
+    </h2>
+
+    <div class="showstopper">
+      <a href="/balenciaga" class="featured-balenciaga">
+        <img src="https://i.pinimg.com/736x/0e/f8/03/0ef803bb17888c772cb48e0e80966337.jpg" alt="balenciaga">
+        <h2>BALENCIAGA</h2>
+        <p>Buy 2 get 30% OFF</p>
+      </a>
+
+      <div class="brands-grid">
+        <a href="/tommy hilfiger">
+          <img src="https://i.pinimg.com/736x/c5/40/4d/c5404ded74707eb71725757659c9f0bf.jpg" alt="Tommy Hilfiger">
+          <h2>TOMMY HILFIGER</h2>
+          <p>Upto 50% OFF</p>
+        </a>
+        <a href="/Calvin Klein">
+          <img src="https://i.pinimg.com/736x/fe/9f/80/fe9f80415b4edfea9e3c56a8506665d4.jpg" alt="Calvin Klein">
+          <h2>CALVIN KLEIN</h2>
+          <p>Upto 40% OFF + Buy 2 Get 15% Off</p>
+        </a>
+        <a href="/ralph lauren">
+          <img src="https://i.pinimg.com/736x/f5/dd/52/f5dd52280c738f464d7167129678247d.jpg" alt="Ralph Lauren">
+          <h2>RALPH LAUREN</h2>
+          <p>Upto 30% OFF + Buy 2 Get 15% Off</p>
+        </a>
+        <a href="/lacoste">
+          <img src="https://i.pinimg.com/736x/9e/c8/bb/9ec8bb714dc278b6792330673ec72d54.jpg" alt="Lacoste">
+          <h2>LACOSTE</h2>
+          <p>Upto 30% OFF</p>
+        </a>
+        <a href="/versace">
+          <img src="https://i.pinimg.com/736x/be/a2/fd/bea2fdf72bbfcda5e60f96878eeb79cd.jpg" alt="Versace">
+          <h2>VERSACE</h2>
+          <p>Upto 30% OFF</p>
+        </a>
+        <a href="guess">
+          <img src="https://i.pinimg.com/736x/8a/91/82/8a91826ccdb83a349269dad26a0e5baf.jpg" alt="Guess">
+          <h2>GUESS</h2>
+          <p>Upto 40% OFF + Buy 2 Get 15% Off</p>
+        </a>
+      </div>
+    </div>
+
+    <h2 style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px; font-style: italic;">
+      ELIXIRS
+      <hr style="width: 80%; border: 1px solid green; margin: 10px auto;">
+    </h2>
+
+    <div class="perfumes">
+      <a href="/tom ford">
+        <img src="https://i.pinimg.com/1200x/06/21/e0/0621e0a2fa136cde0a65780d7cbb7921.jpg" alt="tom ford">
+        <h2>TOM FORD</h2>
+      </a>
+      <a href="/creed">
+        <img src="https://i.pinimg.com/1200x/10/a8/17/10a817892def4b099f224b0b598aacd6.jpg" alt="Creed">
+        <h2>CREED</h2>
+      </a>
+      <a href="/giorgio armani">
+        <img src="https://i.pinimg.com/1200x/e1/bb/eb/e1bbeb30020b47ca47d212dd4ffd5dae.jpg" alt="Giorgio Armani">
+        <h2>GIORGIO ARMANI</h2>
+      </a>
+      <a href="/prada">
+        <img src="https://i.pinimg.com/1200x/99/3a/07/993a070878c99140a06b151b97b25a1f.jpg" alt="Prada">
+        <h2>PRADA</h2>
+      </a>
+      <a href="/versace">
+        <img src="https://i.pinimg.com/736x/67/96/7f/67967fe0c3212ccb2ee2a3051c4a27db.jpg" alt="Versace">
+        <h2>VERSACE</h2>
+      </a>
+      <a href="/diesel">
+        <img src="https://i.pinimg.com/1200x/75/7a/cf/757acf49bf30328c546bc779a5433586.jpg" alt="Diesel">
+        <h2>DIESEL</h2>
+      </a>
+      <a href="/dior">
+        <img src="https://i.pinimg.com/736x/7b/ec/e2/7bece2908c701518db80d6e041db08bd.jpg" alt="dior">
+        <h2>DIOR</h2>
+      </a>
+      <a href="/chanel">
+        <img src="https://i.pinimg.com/736x/ba/34/89/ba34899ed05a9f8aab851ea958a75c3e.jpg" alt="Chanel">
+        <h2>CHANEL</h2>
+      </a>
+    </div>
+
+    <div class="genz-slider">
+      <h2 style="text-align:center; margin:40px 0 10px; font-size:40px; color:#fff; font-weight:700; letter-spacing:1px; font-style: italic; background-color:#111;">
+        GEN-Z DRIPS
+      </h2>
+
+      <audio id="genz-audio" loop>
+        <source src="" type="audio/mpeg">
+      </audio>
+
+      <div class="genz-images-wrapper">
+        <div class="genz-images">
+          <a href="/view all">
+            <img src="{% static 'app/images/img1.png' %}"alt="gen-z 1" class="active">
+            <img src="{% static 'app/images/img2.png' %}"alt="gen-z 2">
+            <img src="{% static 'app/images/img3.png' %}"alt="gen-z 3">
+            <img src="{% static 'app/images/img4.png' %}" alt="gen-z 4">
+            <img src="{% static 'app/images/img5.png' %}" alt="gen-z 5">
+            <img src="{% static 'app/images/img6.png' %}" alt="gen-z 6">
+          </a>
+        </div>
+
+        <div class="genz-text-slide">
+          <h2>GEN-Z STYLE UNLEASHED</h2>
+          <p style="font-size: 15px;">Drop the basics. Embrace bold.</p><br>
+          <a href="/view all"><p>VIEW ALL</p><br></a>
+          <a href="/50% off"><p>FROM 50% OFF</p><br></a>
+          <a href="/new apperals"><p>NEW APPERALS</p><br></a>
+          <a href="/street wear"><p>STREET WEAR</p><br></a>
+          <a href="/baggy"><p>ALL BAGGY</p><br></a>
+          <a href="/sale"><p style="color: rgb(30, 157, 30);">SALE</p><br></a>
+          <a href="/bags"><p>BAGS | BAGPACKS</p><br></a>
+          <a href="/accessories"><p>ACCESSORIES</p><br></a>
+        </div>
+      </div>
+
+      <h2 style="text-align:center; margin:40px 0 10px; font-size:40px; color:#fff; font-weight:700; letter-spacing:1px; font-style: italic; background:#000;">
+        NEW ARRIVALS
+      </h2>
+
+      <div class="new-arrivals">
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/1200x/49/85/41/498541f3c1e4131ca28c6f2c7800106c.jpg" alt="Women Baggy">
+          <h2>WOMEN BAGGY SWEATPANTS</h2>
+        </a>
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/736x/20/6f/6c/206f6c023601b14f6567bfe4020dc1af.jpg" alt="Grillz">
+          <h2>UNISEX GRILLZ</h2>
+        </a>
+        <a href="/new arrivals">
+          <img src="https://i.pinimg.com/736x/64/ee/29/64ee29ecf863bff2003804a3ffc2c615.jpg" alt="Diesel Cap">
+          <h2>MEN DIESEL CAP</h2>
+        </a>
+        <a href="/new arrivals" class="discount-card">
+          <span class="discount-badge">30% OFF</span>
+          <img src="https://i.pinimg.com/1200x/f4/32/5e/f4325e1d6094ca326261c43276818683.jpg" alt="Jeans">
+          <h2>DIRT WASH MULTI-POCKET JEANS</h2>
+        </a>
+      </div>
+    </div>
+
+    <section class="subscription-section">
+      <h2 class="section-title">JOIN THE <span style="color: #2ecc71;">CARTIFY</span> CLUB</h2>
+      <p class="section-subtitle">Unlock Exclusive Perks, Early Access & Mastercard Rewards</p>
+
+      <div class="subscription">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <a href="/Mastercard" class="flip-card-front">
+              <img src="{% static 'app/images/mcard_back.jpg' %}" alt="Mastercard Front">
+            </a>
+            <a href="/Mastercard" class="flip-card-back">
+              <img src="{% static 'app/images/mcard_front.jpg' %}" alt="Mastercard Back">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <h2 style="text-align:center; margin:40px 0 10px; font-size:32px; color:rgb(17, 146, 17); font-weight:700; letter-spacing:1px; font-style: italic;">
+      HOME DECOR
+      <hr style="width: 80%; border: 1px solid green; margin: 10px auto;">
+    </h2>
+    <p style="text-align: center; font-size: 18px; color: rgb(17, 146, 17); margin-bottom: 20px; font-style: italic;">
+      Home goals? We just dropped them.
+    </p>
+
+    <div class="home-decor">
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/97/8a/9b/978a9bbb29a41075e97b752f0739608e.jpg" alt="Home Decor">
+        <h2>JAPANDI VASE</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/de/5e/aa/de5eaa6d284d95889b18549fd2fa6cd1.jpg" alt="Home Decor">
+        <h2>COZY BEAN BAG</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/3c/d6/21/3cd6213da57e10e57523c9126fbcf9d2.jpg" alt="Home Decor">
+        <h2>TABLE LAMP</h2>
+      </a>
+      <a href="/decor">
+        <img src="https://i.pinimg.com/1200x/c9/33/3d/c9333dca89f2f6e155f4cb98b012624f.jpg" alt="Home Decor">
+        <h2>SCANDINAVIAN THROW BLANKET</h2>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; CARTIFY – Curated Luxury, Delivered Instantly</p>
+    <hr />
+    <div class="content">
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://gmail.com" target="_blank">Email</a>
+      <a href="https://x.com" target="_blank">X</a>
+    </div>
+    <p style="margin-top: 15px; font-size: 12px;">2025 — Crafted with precision</p>
+  </footer>
+
+  <!-- JS (kept inline as in your original) -->
+  <script>
+    const slider = document.querySelector('.slider');
+    const slideWidth = slider ? slider.clientWidth : 0;
+    let currentIndex = 0;
+
+    const scrollToSlide = (index) => {
+      if (!slider) return;
+      slider.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+    };
+
+    if (slider) {
+      setInterval(() => {
+        currentIndex++;
+        if (currentIndex >= slider.children.length) currentIndex = 0;
+        scrollToSlide(currentIndex);
+      }, 3000);
+    }
+
+    const genzImages = document.querySelectorAll('.genz-images img');
+    let genzIndex = 0;
+    function updateGenzSlide() {
+      if (!genzImages.length) return;
+      genzImages.forEach(img => img.classList.remove('active'));
+      genzImages[genzIndex].classList.add('active');
+      genzIndex = (genzIndex + 1) % genzImages.length;
+    }
+    setInterval(updateGenzSlide, 2500);
+    updateGenzSlide();
+
+    document.getElementById("cart-trigger").addEventListener("click", function (e) {
+      e.preventDefault();
+      openCart();
+    });
+    function openCart() {
+      alert("Opening cart... (Add your cart UI here)");
+    }
+  </script>
+</body>
+</html>
