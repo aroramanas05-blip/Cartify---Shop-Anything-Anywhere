@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Card Stack</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            position: absolute;
+            width: 420px;
+            height: 280px;
+            background: black;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            cursor: grab;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center center;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            left: 50%;
+            top: 50%;
+            margin-left: -210px;
+            margin-top: -140px;
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        .card-header {
+            width: 160px;
+            background: black;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        .card-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #718096;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .card-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: center;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+
+
+        /* Card stacking positions */
+        .card:nth-child(1) {
+            z-index: 5;
+            transform: translateX(0) translateY(0) scale(1) rotateY(0deg);
+        }
+
+        .card:nth-child(2) {
+            z-index: 4;
+            transform: translateX(0) translateY(-25px) scale(0.92) rotateY(0deg);
+        }
+
+        .card:nth-child(3) {
+            z-index: 3;
+            transform: translateX(0) translateY(-50px) scale(0.84) rotateY(0deg);
+        }
+
+        .card:nth-child(4) {
+            z-index: 2;
+            transform: translateX(0) translateY(-75px) scale(0.76) rotateY(0deg);
+        }
+
+        .card:nth-child(5) {
+            z-index: 1;
+            transform: translateX(0) translateY(-100px) scale(0.68) rotateY(0deg);
+        }
+
+        /* Animation states */
+        .card.swiping-left {
+            transform: translateX(-400px) translateY(0) scale(0.8) rotateZ(-15deg) !important;
+            opacity: 0;
+        }
+
+        .card.swiping-right {
+            transform: translateX(400px) translateY(0) scale(0.8) rotateZ(15deg) !important;
+            opacity: 0;
+        }
+
+        .card.moving-up {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 340px;
+                height: 220px;
+                margin-left: -170px;
+                margin-top: -110px;
+            }
+            
+            .card-header {
+                width: 120px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-stack" id="cardStack">
+            <div class="card" data-index="0">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                </div>
+            </div>
+            
+            <div class="card" data-index="1">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                </div>
+            </div>
+            
+            <div class="card" data-index="2">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                </div>
+            </div>
+            
+            <div class="card" data-index="3">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                </div>
+            </div>
+            
+            <div class="card" data-index="4">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <script>
+        class CardStack {
+            constructor() {
+                this.cards = document.querySelectorAll('.card');
+                this.currentIndex = 0;
+                this.isAnimating = false;
+                this.startX = 0;
+                this.startY = 0;
+                this.currentX = 0;
+                this.currentY = 0;
+                this.isDragging = false;
+                
+                this.init();
+            }
+            
+            init() {
+                // Add touch/mouse events for swiping
+                this.cards.forEach(card => {
+                    card.addEventListener('mousedown', (e) => this.handleStart(e));
+                    card.addEventListener('touchstart', (e) => this.handleStart(e));
+                });
+                
+                document.addEventListener('mousemove', (e) => this.handleMove(e));
+                document.addEventListener('touchmove', (e) => this.handleMove(e));
+                document.addEventListener('mouseup', () => this.handleEnd());
+                document.addEventListener('touchend', () => this.handleEnd());
+                
+                // Add click handlers for card buttons
+                this.cards.forEach(card => {
+                    const button = card.querySelector('.card-button');
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.handleCardAction(card);
+                    });
+                });
+                
+                this.updateCardPositions();
+            }
+            
+            handleStart(e) {
+                if (this.isAnimating) return;
+                
+                const topCard = this.getTopCard();
+                if (e.target.closest('.card') !== topCard) return;
+                
+                this.isDragging = true;
+                const clientX = e.clientX || e.touches[0].clientX;
+                const clientY = e.clientY || e.touches[0].clientY;
+                
+                this.startX = clientX;
+                this.startY = clientY;
+                this.currentX = clientX;
+                this.currentY = clientY;
+                
+                topCard.style.transition = 'none';
+            }
+            
+            handleMove(e) {
+                if (!this.isDragging || this.isAnimating) return;
+                
+                e.preventDefault();
+                const clientX = e.clientX || e.touches[0].clientX;
+                const clientY = e.clientY || e.touches[0].clientY;
+                
+                this.currentX = clientX;
+                this.currentY = clientY;
+                
+                const deltaX = this.currentX - this.startX;
+                const deltaY = this.currentY - this.startY;
+                const rotation = deltaX * 0.1;
+                const opacity = Math.max(0.5, 1 - Math.abs(deltaX) / 300);
+                
+                const topCard = this.getTopCard();
+                topCard.style.transform = `translateX(${deltaX}px) translateY(${deltaY}px) rotateZ(${rotation}deg)`;
+                topCard.style.opacity = opacity;
+            }
+            
+            handleEnd() {
+                if (!this.isDragging || this.isAnimating) return;
+                
+                this.isDragging = false;
+                const deltaX = this.currentX - this.startX;
+                const threshold = 100;
+                
+                const topCard = this.getTopCard();
+                topCard.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                
+                if (Math.abs(deltaX) > threshold) {
+                    // Swipe detected
+                    if (deltaX > 0) {
+                        this.swipeRight();
+                    } else {
+                        this.swipeLeft();
+                    }
+                } else {
+                    // Snap back
+                    topCard.style.transform = '';
+                    topCard.style.opacity = '';
+                }
+            }
+            
+            getTopCard() {
+                return this.cards[this.currentIndex];
+            }
+            
+            nextCard() {
+                if (this.isAnimating) return;
+                this.swipeLeft();
+            }
+            
+            previousCard() {
+                if (this.isAnimating) return;
+                this.swipeRight();
+            }
+            
+            swipeLeft() {
+                if (this.isAnimating) return;
+                
+                this.isAnimating = true;
+                const topCard = this.getTopCard();
+                
+                topCard.classList.add('swiping-left');
+                
+                setTimeout(() => {
+                    this.moveCardToBack();
+                    this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+                    this.updateCardPositions();
+                    this.isAnimating = false;
+                }, 600);
+            }
+            
+            swipeRight() {
+                if (this.isAnimating) return;
+                
+                this.isAnimating = true;
+                const topCard = this.getTopCard();
+                
+                topCard.classList.add('swiping-right');
+                
+                setTimeout(() => {
+                    this.moveCardToBack();
+                    this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+                    this.updateCardPositions();
+                    this.isAnimating = false;
+                }, 600);
+            }
+            
+            moveCardToBack() {
+                const topCard = this.getTopCard();
+                const cardStack = document.getElementById('cardStack');
+                
+                // Remove the card and append it to the end
+                cardStack.removeChild(topCard);
+                cardStack.appendChild(topCard);
+                
+                // Reset classes and styles
+                topCard.classList.remove('swiping-left', 'swiping-right');
+                topCard.style.transform = '';
+                topCard.style.opacity = '';
+                topCard.style.transition = '';
+            }
+            
+            updateCardPositions() {
+                const cards = document.querySelectorAll('.card');
+                
+                cards.forEach((card, index) => {
+                    card.classList.add('moving-up');
+                    
+                    const scale = 1 - (index * 0.08);
+                    const translateY = -(index * 25);
+                    const zIndex = cards.length - index;
+                    
+                    card.style.zIndex = zIndex;
+                    card.style.transform = `translateX(0) translateY(${translateY}px) scale(${scale})`;
+                    
+                    setTimeout(() => {
+                        card.classList.remove('moving-up');
+                    }, 600);
+                });
+            }
+            
+            handleCardAction(card) {
+                // Add a subtle animation when button is clicked
+                const button = card.querySelector('.card-button');
+                button.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+                
+                // You can add more functionality here
+                console.log('Card action triggered:', card.querySelector('.card-title').textContent);
+            }
+        }
+        
+        // Initialize the card stack when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new CardStack();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987b873ae54aa7e0',t:'MTc1OTMxNzE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

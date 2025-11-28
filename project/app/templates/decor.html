@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Design</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f4ec;
+            /* Cream background */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a2e26;
+            /* Dark green */
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 1.5rem;
+        }
+
+        nav a {
+            color: #d4af37;
+            /* Gold color */
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            /* Background image - Replace with your actual image URL */
+            background: url('https://i.pinimg.com/1200x/7e/2b/8d/7e2b8d36810e2bb3401a5abbfa2efe9e.jpg') no-repeat center center;
+            background-size: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #d4af37;
+            padding: 2rem;
+            margin-top: 50px;
+            /* Account for fixed header */
+            position: relative;
+        }
+
+        /* Optional: Add a dark overlay for better text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            background-color: #d4af37;
+            color: #1a2e26;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #b8972e;
+            transform: translateY(-2px);
+        }
+
+        /* === PRODUCTS CATEGORY SECTION === */
+        .products-category-section {
+            background-color: #f5efe6;
+            /* Soft beige background as in your image */
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .products-category-section h2 {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #000;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .category-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            width: 180px;
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: brightness(0.8);
+            /* Optional: gives a slightly muted look like sketch */
+        }
+
+        .category-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+            margin: 10px 0 5px;
+        }
+
+        .category-item p {
+            font-size: 14px;
+            color: #d4a74c;
+            /* Warm orange-brown as shown */
+            font-style: italic;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .connector-line {
+            width: 60px;
+            height: 2px;
+            background-color: #d4a74c;
+            /* Same warm color as description text */
+            position: relative;
+        }
+
+        .connector-line::before,
+        .connector-line::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #d4a74c;
+        }
+
+        .connector-line::before {
+            left: -4px;
+        }
+
+        .connector-line::after {
+            right: -4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .connector-line {
+                display: none;
+            }
+        }
+
+        .category-item a {
+            text-decoration: none;
+            color: inherit;
+            /* ensures text stays same color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* Featured Product Section Styles */
+        .featured-product {
+            padding: 4rem 2rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-info h2 {
+            font-size: 2.5rem;
+            color: #1a2e26;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .product-info p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .product-info .btn {
+            background-color: transparent;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+
+        .product-info .btn:hover {
+            background-color: #d4af37;
+            color: #1a2e26;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .featured-product {
+                flex-direction: column;
+            }
+        }
+
+        /* === FULLSCREEN DREAM SPACE SECTION === */
+        .dream-space-fullscreen {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f4ec;
+        }
+
+        .fullscreen-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            filter: brightness(0.95);
+            transition: filter 0.5s ease;
+        }
+
+        .dream-space-fullscreen:hover .fullscreen-bg {
+            filter: brightness(1);
+        }
+
+        .fullscreen-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 600px;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .parallax-title,
+        .parallax-subtitle {
+            font-size: 4rem;
+            line-height: 1;
+            color: #1a2e26;
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            transform: translateY(0);
+            transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .parallax-title {
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .parallax-subtitle {
+            font-weight: 600;
+            color: #d4af37;
+            margin-top: -10px;
+        }
+
+        .parallax-tagline {
+            font-size: 1.2rem;
+            color: #5a5a5a;
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.8;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Hover effect */
+        .dream-space-fullscreen:hover .parallax-title {
+            transform: translateY(-10px);
+        }
+
+        .dream-space-fullscreen:hover .parallax-subtitle {
+            transform: translateY(5px);
+        }
+
+        .dream-space-fullscreen:hover .parallax-tagline {
+            opacity: 1;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(-50%) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-70%) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-60%) translateX(-50%);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dream-space-fullscreen {
+                height: 100vh;
+            }
+
+            .parallax-title,
+            .parallax-subtitle {
+                font-size: 2.5rem;
+            }
+
+            .scroll-indicator {
+                bottom: 20px;
+            }
+        }
+
+      .fullscreen-video {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+     width: 120%;
+    height: 120%;
+    left: -10%;
+    top: -10%; /* optional */
+}
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Furniture</a></li>
+                <li><a href="#">Designers</a></li>
+                <li><a href="#">Trends</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Furniture Design</h1>
+            <button class="btn">Show More</button>
+        </div>
+    </section>
+
+    <section class="products-category-section">
+        <h2>PRODUCTS</h2>
+        <div class="category-row">
+            <div class="category-item">
+                <a href="/decor/sofas">
+                    <img src="https://webstockreview.net/images/couch-clipart-outline-2.png" alt="Couches Icon"
+                        class="category-icon">
+                    <h3>Couches</h3>
+                    <p>Comfortable sofas for relaxation</p>
+                </a>
+            </div>
+            <div class="connector-line"></div>
+            <div class="category-item">
+                <a href="/decor/armchairs">
+                    <img src="https://png.pngtree.com/png-vector/20230531/ourmid/pngtree-cartoon-tufted-armchair-vector-on-white-background-png-image_6775118.png"
+                        alt="Armchairs Icon" class="category-icon">
+                    <h3>Armchairs</h3>
+                    <p>Comfortable armchairs for seating</p>
+                </a>
+            </div>
+            <div class="connector-line"></div>
+            <div class="category-item">
+                <a href="/decor/chairs">
+                    <img src="https://png.pngtree.com/png-vector/20220606/ourmid/pngtree-hammock-chair-icon-outline-vector-png-image_4870767.png"
+                        alt="Chairs Icon" class="category-icon">
+                    <h3>Chairs</h3>
+                    <p>Modern chairs for the office</p>
+                </a>
+            </div>
+            <div class="connector-line"></div>
+            <div class="category-item">
+                <a href="/decor/tables">
+                    <img src="https://png.pngtree.com/png-vector/20230531/ourmid/pngtree-simple-drawing-of-a-stool-beside-a-book-on-a-table-vector-png-image_6787032.png"
+                        alt="Tables Icon" class="category-icon">
+                    <h3>Tables</h3>
+                    <p>Versatile tables designed for every room</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Product Section -->
+    <section class="featured-product">
+        <div class="product-image">
+            <img src="https://i.pinimg.com/736x/10/a7/c7/10a7c7fb53b026fcf35165d97926a41c.jpg" alt="Drop Chair">
+        </div>
+        <div class="product-info">
+            <h2>Drop Chair</h2>
+            <h3>The Yellow leather edition</h3>
+            <p>Stunning piece of furniture that combines modern design with timeless elegance. Its distinctive shape and
+                bright yellow color make it a real eye-catcher in any room. The chair is not only stylish but also
+                comfortable and soft.</p>
+            <button class="btn">Learn More</button>
+        </div>
+    </section>
+
+    <section class="dream-space-fullscreen">
+        <!-- Removed static background image -->
+        <!-- Added looping 4K ambient video -->
+        <video autoplay muted loop playsinline class="fullscreen-video">
+            <source src="../static/app/videos/furnit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="fullscreen-content">
+            <h2 class="parallax-title">Set Your</h2>
+            <h2 class="parallax-subtitle">Dream Space</h2>
+            <p class="parallax-tagline">Design it. Float in it. Live in it.</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+</body>
+
+</html>

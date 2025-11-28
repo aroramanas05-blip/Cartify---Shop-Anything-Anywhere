@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #79b06e 0%, #0a4d1a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+        }
+
+        .signin-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(170, 238, 170, 0.497);
+            
+            overflow: hidden;
+            
+        }
+
+        /* Left Branding Panel */
+        .branding {
+            flex: 1;
+            background: linear-gradient(120deg, #294117 0%, #294117 100%);
+            color: #fff;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branding::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .branding::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(0, 0, 0, 0.07);
+            border-radius: 50%;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo span {
+            color: #648030;
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 320px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        /* Sign-in Form */
+        .signin-form {
+            flex: 1;
+            padding: 60px 50px;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #604810;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-header p {
+            color: #684314;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #21571d;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px 14px 42px;
+            border: 1px solid #246a1e;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background:rgba(175, 244, 175, 0.497);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #c9a97e;
+            box-shadow: 0 0 0 3px rgba(201, 169, 126, 0.2);
+            background: rgb(255, 255, 255);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 16px;
+            top: 42px;
+            color: #436723;
+            font-size: 16px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember input {
+            margin-right: 8px;
+            accent-color: #c9a97e;
+        }
+
+        .forgot-password {
+            color: #604810;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .forgot-password:hover {
+            color: #c9a97e;
+        }
+
+        .btn-signin {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #58420e, #765915);
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-signin:hover {
+            background: linear-gradient(to right, #765915, #509225);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 28px 0;
+            position: relative;
+            color: #459625ba;
+            font-size: 14px;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 42%;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 42%;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(170, 238, 170, 0.497);
+            border: 1px solid #e9ecef;
+            color: #24711e;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            border-color: #c9a97e;
+            color: #c9a97e;
+            transform: translateY(-3px);
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 15px;
+            color: #1d6321;
+        }
+
+        .signup-link a {
+            color: #513615;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        .signup-link a:hover {
+            color: #c9a97e;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signin-container {
+                flex-direction: column;
+            }
+            
+            .branding {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <!-- Branding Panel -->
+        <div class="branding">
+            <div class="logo">cart<span>ify</span></div>
+            <p class="tagline">Experience curated luxury shopping with exclusive collections and white-glove service.</p>
+        </div>
+        
+        <!-- Sign-in Form -->
+        <div class="signin-form">
+            <div class="form-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your luxury collection</p>
+            </div>
+            
+            <form>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="options">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-signin">Sign In</button>
+            </form>
+            
+            <div class="divider">or continue with</div>
+            
+            <div class="social-login">
+                <a href="#" class="social-btn"><i class="fab fa-apple"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="#">Create Account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

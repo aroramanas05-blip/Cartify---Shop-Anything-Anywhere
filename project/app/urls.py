@@ -19,6 +19,11 @@ from django.urls import path
 from app import views
 
 
+# In your app's urls.py
 urlpatterns = [
-    path('', views.index,name= 'home') # Redirect root URL to admin
+    path('', views.index, name='index'),  # Home page
+    path('signin', views.signin, name='signin'),  # Sign In page
+    path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
+    # ... other routes
 ]

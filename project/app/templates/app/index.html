@@ -11,6 +11,417 @@
   <link rel="stylesheet" href="{% static  'app/css/style.css' %}" />
 </head>
 
+<style>
+  .kicks-section {
+    padding: 40px 20px;
+    background-color: white;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .section-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #000;
+    margin: 0;
+  }
+
+  .view-all-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    background-color: #333;
+  }
+
+  .sneaker-container {
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .sneaker-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sneaker-grid {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    min-width: 100%;
+    cursor: grab;
+  }
+
+  .sneaker-grid:active {
+    cursor: grabbing;
+  }
+
+  .sneaker-card {
+    min-width: 280px;
+    border: 1px solid #f2e9e9;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 0 0 auto;
+  }
+
+  .sneaker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .sneaker-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+
+  .sneaker-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+  }
+
+  .original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
+  }
+
+  .restock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .restock-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+
+  .restock-header .japanese {
+    color: #ff0000;
+    /* Bright red */
+    margin-left: 10px;
+  }
+
+  .view-all {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .restock-background {
+    background: linear-gradient(90deg,
+        #121212 0%,
+        #121212 49%,
+        #1a1a1a 50%,
+        #1a1a1a 51%,
+        #121212 52%,
+        #121212 100%);
+    background-size: 10px 100%;
+    /* Adjust the width of the stripes */
+  }
+
+  .scrolling-banner {
+    background-color: #000;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+    font-size: clamp(14px, 3vw, 20px);
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .banner-content {
+    display: inline-block;
+    animation: scrollLeft 20s linear infinite;
+    color: white;
+  }
+
+  .banner-content span.superdry {
+    color: red;
+  }
+
+  @keyframes scrollLeft {
+    from {
+      transform: translateX(100%, -50%);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Refined Superdry Section Styling */
+  .superdry-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .superdry-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+
+  .superdry-item {
+    flex: 1;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Image container styling */
+  .superdry-item img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .superdry-item img:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
+
+  /* Text block styling */
+  .superdry-item h2 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #d01616 0%, #2c2c2c 100%);
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure consistent height and centering */
+  .superdry-left,
+  .superdry-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .superdry-row {
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .superdry-item {
+      min-height: auto;
+    }
+
+    .superdry-item img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .superdry-item h2 {
+      font-size: 18px;
+      padding: 16px;
+      max-width: 100%;
+    }
+  }
+
+  /* FESTIVE WATCHES SECTION STYLING */
+ 
+.watches-section {
+  background-color: #5a0505; 
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.festive-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.festive-title {
+  font-size: 54px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin: 0 0 12px 0;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.festive-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 0 30px 0;
+  font-style: italic;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+
+.festive-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Button */
+.festive-discover-btn {
+  display: inline-block;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 8px 148px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+}
+
+.festive-discover-btn:hover {
+  background: white;
+  color: #5a0505;
+  border-color: white;
+  letter-spacing: 2px;
+}
+.festive-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+  /* FESTIVE WATCHES IMAGES CONTAINER */
+  /* FESTIVE WATCHES IMAGES CONTAINER - SINGLE HORIZONTAL LINE */
+.festive-images-container {
+  display: flex;
+  gap: 20px; /* Adjust as needed */
+  justify-content: center;
+  margin: 30px 0;
+  /* Allow horizontal scroll if content overflows */
+  white-space: nowrap; /* Prevent wrapping */
+  padding: 10px 0; /* Optional: add some padding for breathing room */
+}
+
+.festive-images-container .festive-image-link {
+  flex: 0 0 auto; /* Prevent shrinking/stretching */
+  min-width: 400px;
+  max-width: 800px;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: inline-block; /* Ensures proper inline behavior */
+}
+
+.festive-images-container .festive-image-link:hover {
+  transform: scale(1.02);
+}
+
+.festive-images-container .festive-image {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+  
+  @media (max-width: 768px) {
+    .festive-images-container {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .festive-images-container .festive-image-link {
+      min-width: auto;
+      max-width: none;
+    }
+  }
+ .festive-image-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 400px;
+  max-width: 800px;
+}
+
+.festive-quote {
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: 12px;
+  color: white;
+  letter-spacing: 1px;
+}
+</style>
+
 <body>
   <header>
     <a href="/cart" class="logo-title" id="cart-trigger" style="cursor: pointer;">
@@ -21,7 +432,7 @@
     </a>
 
     <nav>
-      <a href="/home">Home</a>
+      <a href="">Home</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
       <a href="/signin">Sign In</a>
@@ -359,11 +770,238 @@
         Your browser does not support the video tag.
       </video>
       <div class="overlay-content">
-        <h1>CARTIFY LUXURY EDIT</h1>
+        <h1>THE LUXURY EDIT</h1>
         <p>Where Trends Meet Timeless Elegance</p>
         <a href="/shop" class="cta-btn">SHOP NOW</a>
       </div>
     </div>
+    <!-- ACCESSORIES SECTION -->
+    <div class="fk-section">
+      <div class="fk-header">
+        <h1>ACCESSORIES</h1>
+        <div class="category-buttons">
+          <a href="/accessorie/mens" class="category-btn">MEN'S</a>
+          <a href="/accessorie/womens" class="category-btn">WOMEN'S</a>
+        </div>
+      </div>
+      <div class="fk-image">
+        <img src="https://i.pinimg.com/1200x/ed/46/99/ed4699c3599e49422aff05344c113863.jpg" alt="">
+      </div>
+    </div>
+
+    <!-- KICKS SNEAKER SECTION -->
+
+
+    <div class="kicks-section">
+      <div class="section-header">
+        <h1 style="text-align: center;">
+          KICKS</h1>
+        <a href="/sneakers" class="view-all-btn">VIEW ALL</a>
+      </div>
+
+      <div class="sneaker-container">
+        <div class="sneaker-grid" id="sneakerGrid">
+          <div class="sneaker-card">
+            <a href="/sneaker/jordan-1-retro-low-og-sp-fragment">
+              <img src="https://i.pinimg.com/736x/84/62/a6/8462a66f1eac5e1f406210ffe5018ea0.jpg"
+                alt="Jordan 1 Retro Low OG SP Fragment x Travis Scott Sail Military Blue">
+              <div class="sneaker-info">
+                <h3>JORDAN 1 RETRO LOW OG SP FRAGMENT X TRAVIS SCOTT SAIL MILITARY BLUE</h3>
+                <p class="price">MRP ₹10,999 <span class="original-price">MRP ₹13,000</span></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="sneaker-card">
+            <a href="/sneaker/jordan-1-low-se-medium-olive-sail">
+              <img src="https://i.pinimg.com/736x/76/d0/ce/76d0ce0541757e88225f2adfbfb6b11d.jpg"
+                alt="Jordan 1 Low SE Medium Olive Sail">
+              <div class="sneaker-info">
+                <h3>JORDAN 1 LOW SE MEDIUM OLIVE SAIL</h3>
+                <p class="price">MRP ₹10,999 <span class="original-price">MRP ₹13,000</span></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="sneaker-card">
+            <a href="/sneaker/jordan-1-low-se-patent-varsity-red-black">
+              <img src="https://i.pinimg.com/1200x/15/bd/bc/15bdbc1abbf60e4c9a843c8feff54036.jpg"
+                alt="Jordan 1 Low SE Patent Varsity Red Black">
+              <div class="sneaker-info">
+                <h3>JORDAN 1 LOW SE PATENT VARSITY RED BLACK</h3>
+                <p class="price">MRP ₹10,999 <span class="original-price">MRP ₹13,000</span></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="sneaker-card">
+            <a href="/sneaker/jordan-1-low-sail-ghost-w">
+              <img src="https://i.pinimg.com/1200x/08/a5/f0/08a5f01b7e85e23ed175bf1f8d401bf4.jpg"
+                alt="Jordan 1 Low Sail Ghost (W)">
+              <div class="sneaker-info">
+                <h3>JORDAN 1 LOW SAIL GHOST (W)</h3>
+                <p class="price">MRP ₹8,295 <span class="original-price">MRP ₹11,000</span></p>
+              </div>
+            </a>
+          </div>
+
+
+          <div class="sneaker-card">
+            <a href="/sneaker/air-force-1">
+              <img src="https://i.pinimg.com/1200x/da/78/6e/da786e881ebe555592df0477082fc43c.jpg"
+                alt="Nike Air Force 1">
+              <div class="sneaker-info">
+                <h3>NIKE AIR FORCE 1 '07</h3>
+                <p class="price">MRP ₹8,995 <span class="original-price">MRP ₹10,000</span></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="sneaker-card">
+            <a href="/sneaker/yeezy-boost-350">
+              <img src="https://i.pinimg.com/1200x/3b/f0/5b/3bf05b86a4c7423aa32d009e4b98d618.jpg"
+                alt="Adidas Yeezy Boost 350">
+              <div class="sneaker-info">
+                <h3>ADIDAS YEEZY BOOST 350 V2</h3>
+                <p class="price">MRP ₹18,999 <span class="original-price">MRP ₹22,000</span></p>
+              </div>
+            </a>
+          </div>
+          <div class="sneaker-card">
+            <a href="/sneaker/new balance-740.0">
+              <img src="https://i.pinimg.com/1200x/f4/46/1d/f4461d3db5e849ba54ce7527164e5eec.jpg"
+                alt="New Balance 740.0">
+              <div class="sneaker-info">
+                <h3>NEW balance-740.0</h3>
+                <p class="price">MRP ₹13,999 <span class="original-price">MRP ₹16,000</span></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SUPERDRY SECTION -->
+    <div class="restock-background">
+      <div class="restock-header">
+        <h1 style="color: red; text-align: center; font-size: 130px;font-family:Arial, Helvetica, sans-serif;">SUPERDRY
+          &reg;<span class="japanese" style="color:white;text-align: center;font-size:50px ;">スーパードライ</span></h1>
+        <button class="view-all">view all</button>
+      </div>
+      <div class="scrolling-banner">
+        <div class="banner-content">
+          New-In <span class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY </span>
+          New-In <span class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> <span class="superdry">SUPERDRY</span> New-In <span
+            class="superdry">SUPERDRY</span> New-In <span class="superdry">SUPERDRY </span>
+        </div>
+      </div>
+      <div class="superdry-grid">
+        <!-- Row 1 -->
+        <div class="superdry-row">
+          <div class="superdry-item superdry-left">
+            <a href="/superdry">
+              <img src="{% static 'app/images/super5.jpg' %}" alt="superdry">
+            </a>
+          </div>
+          <div class="superdry-item superdry-right">
+            <a href="/superdry">
+              <h2>SUPERDRY HOODIES</h2>
+            </a>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="superdry-row">
+          <div class="superdry-item superdry-right">
+            <a href="/superdry">
+              <h2>SUPERDRY JACKETS</h2>
+            </a>
+          </div>
+          <div class="superdry-item superdry-left">
+            <a href="/superdry">
+              <img src="{% static 'app/images/super4.jpg' %}" alt="superdry">
+            </a>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="superdry-row">
+          <div class="superdry-item superdry-left">
+            <a href="/superdry">
+              <img src="{% static 'app/images/supertee.jpg' %}" alt="superdry">
+            </a>
+          </div>
+          <div class="superdry-item superdry-right">
+            <a href="/superdry">
+              <h2>SUPERDRY T-SHIRTS</h2>
+            </a>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="superdry-row">
+          <div class="superdry-item superdry-right">
+            <a href="/superdry">
+              <h2>SUPERDRY BAGPACKS</h2>
+            </a>
+          </div>
+          <div class="superdry-item superdry-left">
+            <a href="/superdry">
+              <img src="{% static 'app/images/superbag.jpg' %}" alt="superdry">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- watches section -->
+<div class="watches-section">
+  <div class="festive-container">
+    <h2 class="festive-title">CARTIER</h2>
+   
+    <p class="festive-subtitle">FESTIVE SEASON</p>
+
+   <div class="festive-images-container">
+  <!-- Image 1 + Quote -->
+  <div class="festive-image-card">
+    <a href="/Cartier/gifts" class="festive-image-link">
+      <img src="https://i.pinimg.com/1200x/d7/f8/0c/d7f80cdf5bc1e171bc987409f0c543f4.jpg"
+        alt="Cartier Gifts" class="festive-image">
+    </a>
+    <p class="festive-quote">A GIFT : A LOVED ONE</p>
+    <div class="festive-button-container">
+      <a href="/Cartier/collections" class="festive-discover-btn">DISCOVER</a>
+    </div>
+  </div>
+
+  <!-- Image 2 + Quote -->
+  <div class="festive-image-card">
+    <a href="/Cartier/jewellry" class="festive-image-link">
+      <img src="https://i.pinimg.com/1200x/8d/81/35/8d8135028c58c3fa01787a2346fbb022.jpg"
+        alt="Cartier Jewelry" class="festive-image">
+    </a>
+    <p class="festive-quote">JWELLERY TO CELEBRATE</p>
+    <div class="festive-button-container">
+      <a href="/Cartier/collections" class="festive-discover-btn">DISCOVER</a>
+    </div>
+  </div>
+
+  <!-- Image 3 + Quote -->
+  <div class="festive-image-card">
+    <a href="/Cartier/watches" class="festive-image-link">
+      <img src="https://i.pinimg.com/1200x/1f/22/8e/1f228e146aed3075709f18691b054e3d.jpg"
+        alt="Cartier Watches" class="festive-image">
+    </a>
+    <p class="festive-quote">FESTIVE TIME</p>
+    <div class="festive-button-container">
+      <a href="/Cartier/collections" class="festive-discover-btn">DISCOVER</a>
+    </div>
+  </div>
+</div>
   </main>
 
 
@@ -417,6 +1055,67 @@
     function openCart() {
       alert("Opening cart... (Add your cart UI here)");
     }
+
+    // KICKS SECTION SCROLLING ENHANCEMENTS
+    document.addEventListener('DOMContentLoaded', () => {
+      const sneakerGrid = document.getElementById('sneakerGrid');
+
+      if (sneakerGrid) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // Mouse/touch events for dragging
+        sneakerGrid.addEventListener('mousedown', (e) => {
+          isDown = true;
+          sneakerGrid.classList.add('active');
+          startX = e.pageX - sneakerGrid.offsetLeft;
+          scrollLeft = sneakerGrid.scrollLeft;
+          e.preventDefault(); // Prevent text selection
+        });
+
+        sneakerGrid.addEventListener('mouseleave', () => {
+          isDown = false;
+          sneakerGrid.classList.remove('active');
+        });
+
+        sneakerGrid.addEventListener('mouseup', () => {
+          isDown = false;
+          sneakerGrid.classList.remove('active');
+        });
+
+        sneakerGrid.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - sneakerGrid.offsetLeft;
+          const walk = (x - startX) * 2; // Scroll speed
+          sneakerGrid.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile/tablet
+        sneakerGrid.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].pageX - sneakerGrid.offsetLeft;
+          scrollLeft = sneakerGrid.scrollLeft;
+        });
+
+        sneakerGrid.addEventListener('touchmove', (e) => {
+          if (!sneakerGrid.scrollLeft) return;
+          const x = e.touches[0].pageX - sneakerGrid.offsetLeft;
+          const walk = (x - startX) * 2;
+          sneakerGrid.scrollLeft = scrollLeft - walk;
+        });
+
+        // Prevent vertical scrolling when swiping horizontally
+        sneakerGrid.addEventListener('touchmove', (e) => {
+          const yDiff = Math.abs(e.touches[0].clientY - (e.targetTouches[0]?.clientY || 0));
+          const xDiff = Math.abs(e.touches[0].clientX - (e.targetTouches[0]?.clientX || 0));
+
+          if (xDiff > yDiff) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+      }
+    });                 
   </script>
 </body>
 
